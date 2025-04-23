@@ -1,1 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fetch GitHub File</title>
+  <script>
+    // Fetch the file content when the page loads
+    window.onload = function () {
+      fetchFile();
+    };
 
+    function fetchFile() {
+      fetch('https://localhost:7171/get-github-file/', {
+        method: 'GET',
+        headers: {
+          'Accept': '*/*'
+        }
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('HTTP error! Status: ' + response.status);
+        }
+        return response.text(); // or response.json() if needed
+      })
+      .then(data => {
+        document.getElementById('responseContent').textContent = data;
+      })
+      .catch(error => {
+        document.getElementById('responseContent').textContent = 'Error: ' + error.message;
+      });
+    }
+  </script>
+</head>
+<body>
+  <h1>GitHub File Content</h1>
+  <pre id="responseContent">Loading...</pre>
+</body>
+</html>
