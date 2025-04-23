@@ -23,7 +23,7 @@
         return response.text(); // or response.json() if needed
       })
       .then(data => {
-        document.getElementById('responseContent').textContent = data;
+        document.getElementById('responseContent').innerHTML = data;
       })
       .catch(error => {
         document.getElementById('responseContent').textContent = 'Error: ' + error.message;
